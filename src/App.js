@@ -38,6 +38,7 @@ function App() {
   async function getAllHosts () {
     await axios.get('http://95.84.137.217:3001/all-hosts').then((res) => {
       setHosts(processArpScanText(res.data["result"]));
+      setHosts(res.data["result"]);
     }).catch((e) => {
       setHosts(`error: ${e}`)
     })
@@ -48,11 +49,12 @@ function App() {
   return (
     <div className="App">
       <p>я люблю аришку</p>
-      {hosts.map(host => {
+      {/* {hosts.map(host => {
         return(
           <p>{host.map(line => {return line})}</p>
         )
-      })}
+      })} */}
+      {hosts}
       <button onClick={() => getAllHosts()}>Обновить</button>
     </div>
   );
