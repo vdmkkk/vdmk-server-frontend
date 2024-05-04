@@ -8,8 +8,10 @@ import { useState } from 'react';
 function App() {
 
   async function getAllHosts () {
-    await axios.get('95.84.137.217:3001/all-hosts').then((res) => {
-      setHosts(res.data);
+    await axios.get('http://95.84.137.217:3001/all-hosts').then((res) => {
+      setHosts(res.data["result"]);
+    }).catch((e) => {
+      setHosts(`error: ${e}`)
     })
   }
 
@@ -17,7 +19,7 @@ function App() {
 
   return (
     <div className="App">
-      я люблю аришку
+      <p>я люблю аришку</p>
       {hosts}
       <button onClick={() => getAllHosts()}>Обновить</button>
     </div>
